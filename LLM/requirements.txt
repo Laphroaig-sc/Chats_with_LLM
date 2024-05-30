@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+requests
+httpx
+torch==2.3.0
+transformers==4.40.2
+sentence-transformers==2.7.0
+accelerate==0.30.0

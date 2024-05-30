@@ -1,0 +1,37 @@
+# docker-compose.yml
+version: '3'
+services:
+  web:
+    build: ./WEB
+    container_name: 'web_server'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - ./WEB/app:/root/app
+    ports:
+      - 8000:80
+  llm:
+    build: ./LLM
+    container_name: 'llm_server'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - ./LLM/app:/root/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 2
+              capabilities: [gpu]
+    ports:
+      - 8001:80
+  db:
+    build: ./DB
+    container_name: 'db_server'
+    working_dir: '/root/'
+    tty: true
+    volumes:
+      - ./DB/app:/root/app
+    ports:
+      - 8002:80

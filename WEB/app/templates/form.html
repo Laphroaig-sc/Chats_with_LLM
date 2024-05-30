@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="/static/form.css">
+</head>
+<body>
+    <div id="chatbox">
+        <h1>Chatbot</h1>
+        <div id="chatlogs">
+
+        {% if question %}
+            <h2>質問：</h2>
+            <p>{{ question }}</p>
+        {% endif %}
+        {% if context %}
+            <h2>参照：</h2>
+            <p>{{ context }}</p>
+        {% endif %}
+        {% if answer %}
+            <h2>回答：</h2>
+            <p>{{ answer }}</p>
+        {% endif %}
+        </div>
+
+        <form action="/question/" method="post">
+            <input name="user_input" id="user_input" type="text" placeholder="質問を入力してください">
+            <input type="submit" id="submit" value="送信">
+        </form>
+    </div>
+</body>
+</html>
